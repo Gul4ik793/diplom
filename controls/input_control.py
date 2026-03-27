@@ -11,3 +11,6 @@ class InputControl(BaseControl):
 
     def fill(self, text):
         self.wrapper.fill(text)
+
+    def press(self, text):
+        self.wrapper.press(text)
