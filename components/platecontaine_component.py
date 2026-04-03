@@ -9,6 +9,3 @@ class Platecontaine(BaseComponent):
 
     def get_by_text_block(self, text: str):
         return self.wrapper.get_by_text(text)
-
-    def click_by_text(self, text):
-        self.wrapper.get_by_text(text).click()

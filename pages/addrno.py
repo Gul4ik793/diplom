@@ -1,6 +1,6 @@
 from playwright.sync_api import Page
 
-from components.card import Card
+from components.card_components import Card
 from pages.base_page import BasePage
 
 
