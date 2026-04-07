@@ -10,6 +10,12 @@ class OPS_Page(BasePage):
     def __init__(self, page: Page):
         super().__init__(page, "https://www.nalog.gov.ru/rn02/service/ops/")
 
+    def get_header_locator(self, header_text: str):
+        return self.page.locator(f"h1:has-text('{header_text}')")
+
+    def get_li_locator(self, header_text: str):
+        return self.page.locator(f"li:has-text('{header_text}')")
+
     def get_contentform(self):
         return Contentform(self.page)
 

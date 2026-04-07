@@ -12,6 +12,12 @@ class PaymentFL_Page(BasePage):
     def __init__(self, page: Page):
         super().__init__(page, "https://service.nalog.ru/payment/#fl")
 
+    def get_header_locator(self, header_text: str):
+        return self.page.locator(f"h2:has-text('{header_text}')")
+
+    def get_li_locator(self, header_text: str):
+        return self.page.locator(f"li:has-text('{header_text}')")
+
     def get_plate_container(self):
         return Platecontaine(self.page)
 

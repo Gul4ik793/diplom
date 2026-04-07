@@ -14,3 +14,6 @@ class Invalidinnfl_Page(BasePage):
 
     def get_btn_with_icon_search(self):
         return ButtonControl(self.page, self.page.locator(".btn-with-icon.btn-search"))
+
+    def det_Result(self):
+        return self.page.locator(".msg-no-data")
