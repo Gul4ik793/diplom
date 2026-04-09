@@ -150,20 +150,24 @@ def test_replenish_payment(page: Page):
         expected_disq = "Плата за предоставление информации из реестра дисквалифицированных лиц"
         header_disq = payment.get_li_locator(expected_disq)
         expect(header_disq).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 7: Кликнуть Плата за предоставление информации из реестра дисквалифицированных лиц"):
         header_disq.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 7: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Тип платежа"):
+    with allure.step("Шаг 8: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Тип платежа"):
         payment.get_form_labels().get_kbkProg().click()
 
-    with allure.step("Шаг 8: Выбрать Платёж из всплывающего меню"):
+    with allure.step("Шаг 9: Выбрать Платёж из всплывающего меню"):
         expected_payment = "Платёж"
         header_payment = payment.get_li_locator(expected_payment)
         expect(header_payment).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 10: Кликнуть Платёж"):
         header_payment.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 9: нажать кнопку « Далее»"):
+    with allure.step("Шаг 11: нажать кнопку « Далее»"):
         payment.get_form_labels().get_button_next().click()
         page.wait_for_load_state()
         expected_step_PAYEE = "ОКТМО получателя платежа"
@@ -171,18 +175,20 @@ def test_replenish_payment(page: Page):
         expect(header_step_PAYEE).to_be_visible(timeout=5000)
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 10: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Регион"):
+    with allure.step("Шаг 12: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Регион"):
         payment.get_form_labels().get_region().click()
         page.wait_for_timeout(500)
 
-    with allure.step("Шаг 11: Выбрать 02 из всплывающего меню"):
+    with allure.step("Шаг 13: Выбрать 02 из всплывающего меню"):
         expected_region = "02 - БАШКОРТОСТАН РЕСП"
         header_region = payment.get_form_labels().get_li_locator(expected_region)
         expect(header_region).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 14: Кликнуть 02 - БАШКОРТОСТАН РЕСП"):
         header_region.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 12: нажать кнопку « Далее»"):
+    with allure.step("Шаг 15: нажать кнопку « Далее»"):
         payment.get_form_labels().get_button_next().click()
         page.wait_for_load_state()
         expected_step_PAYER = "Сведения о лице, осуществляющем платеж"
@@ -190,19 +196,19 @@ def test_replenish_payment(page: Page):
         expect(header_step_PAYER).to_be_visible(timeout=5000)
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 13: Заполнить форму данными"):
+    with allure.step("Шаг 16: Заполнить форму данными"):
         payment.get_form_labels().get_fioFl().fill('Хасанова Гульчачак Валериевна')
         payment.get_form_labels().get_innFl().fill('026006198150')
         page.wait_for_timeout(1000)
         expect(payment.get_form_labels().get_fioFl().wrapper).to_have_value('Хасанова Гульчачак Валериевна')
         expect(payment.get_form_labels().get_innFl().wrapper).to_have_value('026006198150')
 
-    with allure.step("Шаг 14: нажать кнопку « Далее»"):
+    with allure.step("Шаг 17: нажать кнопку « Далее»"):
         payment.get_form_labels().get_button_next().click()
         page.wait_for_load_state()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 15: нажать кнопку « Уплатить»"):
+    with allure.step("Шаг 18: нажать кнопку « Уплатить»"):
         payment.get_form_labels().get_button_btnPay().click()
         page.wait_for_load_state()
         expect(page).to_have_url(re.compile('pay'))
@@ -217,8 +223,6 @@ def test_replenish_noENS(page: Page):
 
     with allure.step("Шаг 2: Кликнуть на сервис 'Уплата по реквизитам'"):
         payment.get_plate_container().get_by_text_block('Уплата по реквизитам').click()
-
-    with allure.step("Проверка: Страница обновилась, url страницы содержит :  «static»'"):
         expect(page).to_have_url(re.compile('static'))
 
     with allure.step("Шаг 3: Кликнуть  чек бокс Я даю согласие на обработку персональных данных"):
@@ -233,66 +237,76 @@ def test_replenish_noENS(page: Page):
         payment.get_paymentedit().get_region().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 6: Выбрать 02 из всплывающего меню"):
+    with allure.step("Шаг 6: Выбрать 02 - БАШКОРТОСТАН РЕСП из всплывающего меню"):
         expected_region = "02 - БАШКОРТОСТАН РЕСП"
         header_region = payment.get_paymentedit().get_li_locator(expected_region)
         expect(header_region).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 7: Кликнуть 02 - БАШКОРТОСТАН РЕСП"):
         header_region.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 7: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Код ОКТМО"):
+    with allure.step("Шаг 8: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Код ОКТМО"):
         payment.get_paymentedit().get_oktmmf().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 8: Выбрать 80701000 - город Уфа из всплывающего меню"):
+    with allure.step("Шаг 9: Выбрать 80701000 - город Уфа из всплывающего меню"):
         expected_oktmmf = "80701000 - город Уфа"
         header_oktmmf = payment.get_paymentedit().get_li_locator(expected_oktmmf)
         expect(header_oktmmf).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 10: Кликнуть 80701000 - город Уфа"):
         header_oktmmf.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 9: нажать кнопку « Далее»"):
+    with allure.step("Шаг 11: нажать кнопку « Далее»"):
         payment.get_paymentedit().get_btnNext().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 10: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Вид платежа"):
+    with allure.step("Шаг 12: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Вид платежа"):
         payment.get_paymentedit().get_kbkGroup().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 11: Выбрать Налоги, сборы и регулярные платежи за пользование  из всплывающего меню"):
+    with allure.step("Шаг 13: Выбрать Налоги, сборы и регулярные платежи за пользование  из всплывающего меню"):
         expected_kbkGroup = "Налоги, сборы и регулярные платежи за пользование "
         header_kbkGroup = payment.get_paymentedit().get_li_locator(expected_kbkGroup)
         expect(header_kbkGroup).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 14: Кликнуть Налоги, сборы и регулярные платежи за пользование"):
         header_kbkGroup.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 12: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Наименование платежа:"):
+    with allure.step("Шаг 15: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Наименование платежа:"):
         payment.get_paymentedit().get_kbkNoProg().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 13: Выбрать Сбор за пользование объектами животного мира из всплывающего меню"):
+    with allure.step("Шаг 16: Выбрать Сбор за пользование объектами животного мира из всплывающего меню"):
         expected_kbkNoProg = "Сбор за пользование объектами животного мира"
         header_kbkNoProg = payment.get_paymentedit().get_li_locator(expected_kbkNoProg)
         expect(header_kbkNoProg).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 17: Кликнуть Сбор за пользование объектами животного мира"):
         header_kbkNoProg.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 14: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Тип платежа:"):
+    with allure.step("Шаг 18: Нажать кнопку Dropdown arrow (стрелка раскрывающегося меню) поля Тип платежа:"):
         payment.get_paymentedit().get_kbkProg().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 15: Выбрать Платёж из всплывающего меню"):
+    with allure.step("Шаг 19: Выбрать Платёж из всплывающего меню"):
         expected_payment = "Платёж"
         header_payment = payment.get_paymentedit().get_li_locator(expected_payment)
         expect(header_payment).to_be_visible(timeout=5000)
+
+    with allure.step("Шаг 20: Кликнуть Платёж"):
         header_payment.click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 16: нажать кнопку « Далее»"):
+    with allure.step("Шаг 21: нажать кнопку « Далее»"):
         payment.get_form_labels().get_button_next().click()
         page.wait_for_load_state()
 
-    with allure.step("Шаг 17: Заполнить форму данными"):
+    with allure.step("Шаг 22: Заполнить форму данными"):
         payment.get_paymentedit().get_fioFl().fill('Хасанова Гульчачак Валериевна')
         payment.get_paymentedit().get_innFl().fill('026006198150')
         payment.get_paymentedit().get_sum().fill('100')
@@ -300,15 +314,13 @@ def test_replenish_noENS(page: Page):
         expect(payment.get_paymentedit().get_innFl().wrapper).to_have_value('026006198150')
         expect(payment.get_paymentedit().get_sum().wrapper).to_have_value('100')
 
-    with allure.step("Шаг 18: нажать кнопку « Далее»"):
+    with allure.step("Шаг 23: нажать кнопку « Далее»"):
         payment.get_paymentedit().get_btnNext().click()
         page.wait_for_timeout(1000)
 
-    with allure.step("Шаг 19: нажать кнопку « Уплатить»"):
+    with allure.step("Шаг 24: нажать кнопку « Уплатить»"):
         payment.get_paymentedit().get_btnPay().click()
         page.wait_for_timeout(1000)
-
-    with allure.step("Проверка: Страница обновилась, url страницы содержит :  «pay»"):
         expect(page).to_have_url(re.compile('pay'))
 
 @allure.title("Тест 0008: Калькулятор расчёта страховых взносов")
@@ -325,8 +337,6 @@ def test_calculator_strakh_vznosov(page: Page):
 
     with allure.step("Проверка: Страница обновилась, url страницы содержит :  «ops»"):
         expect(page).to_have_url(re.compile('ops'))
-
-    with allure.step("Проверка: На странице присутствует заголовок «Калькулятор расчета страховых взносов»"):
         expected_calc = "Калькулятор расчета страховых взносов"
         header_calc = ops.get_header_locator(expected_calc)
         expect(header_calc).to_be_visible(timeout=5000)
@@ -340,8 +350,6 @@ def test_calculator_strakh_vznosov(page: Page):
     with allure.step("Шаг 4: Нажать кнопку «Рассчитать»"):
         ops.get_contentform().get_blue_button().click()
         page.wait_for_load_state()
-
-    with allure.step("Проверка: URL с расчетом за 2025 год"):
         expect(page).to_have_url(re.compile('y=2025'))
 
 @allure.title("Тест 0009: Сервис Адрес и платежные реквизиты вашей инспекции")
@@ -366,7 +374,7 @@ def test_address_requisites(page: Page):
         addrno.get_card().get_objectAddr().fill("уфа коммунистическая д. 59")
 
     with allure.step("Шаг 4: Выбрать первый элемент из всплывающего меню"):
-        page.locator('[data-object-id="44929801"]').click()
+        addrno.get_card().get_u3fieldoptions().click()
         page.wait_for_load_state()
         expected_Ifns = "Реквизиты ИФНС"
         header_Ifns = addrno.get_card().get_h4_locator(expected_Ifns)
@@ -387,15 +395,15 @@ def test_verification_Invalidinnfl(page: Page):
         page.wait_for_load_state()
         expect(page).to_have_url(re.compile('invalid-inn-fl'))
 
-    with allure.step("Шаг 3: В поле ИНН вести значение 026006198150"):
+    with allure.step("Шаг 3: Кликнуть в поле ИНН"):
         invalidinnfl.get_inn().click()
+
+    with allure.step("Шаг 4: В поле ИНН вести значение 026006198150"):
         invalidinnfl.get_inn().fill("026006198150")
         expect(invalidinnfl.get_inn().wrapper).to_have_value('026006198150')
 
-    with allure.step("Шаг 4: нажать кнопку « Выполнить проверку ИНН»"):
+    with allure.step("Шаг 5: нажать кнопку « Выполнить проверку ИНН»"):
         invalidinnfl.get_btn_with_icon_search().click()
         page.wait_for_load_state()
-
-    with allure.step("Проверка: Результаты поиска:  Информация не найдена"):
         expect(invalidinnfl.det_Result()).to_have_text(re.compile(r"Информация не найдена"))
 

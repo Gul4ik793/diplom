@@ -11,6 +11,9 @@ class Card(BaseComponent):
     def get_objectAddr(self):
         return InputControl(self.page, self.wrapper.locator('[name="objectAddr"]'))
 
+    def get_u3fieldoptions(self):
+        return self.page.locator('[data-object-id="44929801"]')
+
     def get_li_locator(self, header_text: str):
         return self.page.locator(f"li:has-text('{header_text}')")
 
